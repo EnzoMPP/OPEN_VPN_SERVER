@@ -1300,6 +1300,34 @@ cat &lt;(echo -e 'client') \
 <div class="ast-oembed-container" style="height: 100%;" bis_skin_checked="1"></div>
 </div></figure>
 
+<h2>Revogando Certificados</h2>
+
+<p>  revogue o certificado com o ./easyrsa revoke client_name . Confirme yese forneça se você possui uma senha de certificado. </p>
+
+<pre class="wp-block-code"><code>cd ~/easy-rsa/</code></pre>
+
+<pre class="wp-block-code"><code>./easyrsa revoke client_name</code></pre>
+
+<p>Gere uma nova CRL (Lista de revogação de certificado) com o ./easyrsa gen-crl .</p>
+
+<pre class="wp-block-code"><code>./easyrsa gen-crl</code></pre>
+
+<p>copie para o diretorio do openvpn</p>
+
+<pre class="wp-block-code"><code>cp ~/easy-rsa/pki/crl.pem /etc/openvpn/server/</code></pre>
+
+<p>Abra o arquivo de configuração do servidor OpenVPN sudo vim /etc/openvpn/server/server.conf e adicione a linha abaixo na parte inferior do arquivo.</p>
+
+<pre class="wp-block-code"><code>sudo vim /etc/openvpn/server/server.conf</code></pre>
+
+<pre class="wp-block-code"><code>crl-verify crl.pem</code></pre>
+
+<p>Salve e feche o arquivo e reinicie o serviço OpenVPN para implementar a revogação do certificado. </p>
+
+<pre class="wp-block-code"><code>sudo systemctl restart openvpn-server@server.service</code></pre>
+
+
+
 
 
 
