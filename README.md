@@ -1326,10 +1326,48 @@ cat &lt;(echo -e 'client') \
 
 <pre class="wp-block-code"><code>sudo systemctl restart openvpn-server@server.service</code></pre>
 
+	
+<h2>Script para Criar novos certificados</h2>
+	
+
+<pre class="wp-block-code"><code>
+
+cd ~/easy-rsa/
+./easyrsa gen-req $1 nopass
+./easyrsa sign-req client $1
+cd ~/vpn_clients
+mkdir $1
+cd ~/easy-rsa/pki/
+cp ca.crt ~/vpn_clients/$1
+cd ~/easy-rsa/pki/issued/
+cp $1.crt ~/vpn_clients/$1
+cd ~/easy-rsa/pki/private/
+cp $1.key ~/vpn_clients/$1
+cd ~/vpn_clients/$1
+cd ~/vpn_clients/
+cp make_client_ovpn.sh* $1/
+cd $1
+bash ./make_client_ovpn.sh $1
+
+</code></pre>
 
 
+<h2>Script para revogar certificados</h2>
 
+<pre class="wp-block-code"><code>
 
+#Acessa a pasta do easy-rsa
+cd ~/easy-rsa/
+#revoga o certificado
+./easyrsa revoke $1
+#atualiza a lista de revogacao
+./easyrsa gen-crl
+#copia a nova lista de revogacao para o diretorio do openvpn
+cp ~/easy-rsa/pki/crl.pem /etc/openvpn/server/
+#restart no openvpn
+sudo systemctl restart openvpn-server@server.service
+
+</code></pre>
 
 
 
