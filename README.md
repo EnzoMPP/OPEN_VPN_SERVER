@@ -497,6 +497,11 @@ dh dh.pem
 server 10.8.0.0 255.255.255.0 
 
 push "redirect-gateway autolocal" 
+	
+# utilize o redirect-gateway autolocal para usar o servidor vpn como gateway padrao.
+#ou utilize o push route abaixo para direcionar apenas o trafego da VPN e comente o push redirect gateway
+
+#push "route 10.8.0.0 255.255.255.0 vpn_gateway"
 
 # Maintain a record of client &lt;-&gt; virtual IP address 
 
