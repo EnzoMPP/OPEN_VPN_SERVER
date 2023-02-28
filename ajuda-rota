@@ -1,0 +1,9 @@
+#####no cliente 
+
+route add -net 10.8.0.0 netmask 255.255.255.0 gw 192.168.50.235 dev eth0
+
+iptables -t nat -s 10.8.0.0/24 -A POSTROUTING -o eth0 -j MASQUERADE
+
+#####no servidor 
+
+route add -net 192.168.50.0 netmask 255.255.255.0 gw 10.8.0.1 dev tun1585
