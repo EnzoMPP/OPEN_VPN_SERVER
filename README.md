@@ -874,7 +874,7 @@ COMMIT</code></pre>
 
 
 
-<p>Depois de configurarmos o servidor Open VPN, vamos iniciar a configuração do cliente Open VPN. Para isso vamos configurar um cliente hipotético chamado Alice. E configuraremos uma outra máquina onde o cliente Alice vai estar usado.</p>
+<p>Depois de configurarmos o servidor Open VPN, vamos iniciar a configuração do cliente Open VPN. Para isso vamos configurar um cliente hipotético chamado Acess. E configuraremos uma outra máquina onde o cliente Acess vai estar usado.</p>
 
 
 
@@ -894,11 +894,11 @@ COMMIT</code></pre>
 
 
 
-<pre class="wp-block-code"><code>./easyrsa gen-req Alice nopass</code></pre>
+<pre class="wp-block-code"><code>./easyrsa gen-req Acess nopass</code></pre>
 
 
 
-<p>Lembre-se de pressionar ENTER quando perguntar se deseja usar o Common Name.<br>*Vale lembrar que estamos usando como exemplo um cliente com o nome Alice. Certamente, você fará alterações para os nomes dos seus clientes.</p>
+<p>Lembre-se de pressionar ENTER quando perguntar se deseja usar o Common Name.<br>*Vale lembrar que estamos usando como exemplo um cliente com o nome Acess. Certamente, você fará alterações para os nomes dos seus clientes.</p>
 
 
 
@@ -906,7 +906,7 @@ COMMIT</code></pre>
 
 
 
-<pre class="wp-block-code"><code>./easyrsa sign-req client Alice</code></pre>
+<pre class="wp-block-code"><code>./easyrsa sign-req client Acess</code></pre>
 
 
 
@@ -922,7 +922,7 @@ COMMIT</code></pre>
 
 
 
-<p>Nesse tutorial, vamos criar uma chave que será usada pelo cliente Alice.</p><div class="google-auto-placed ap_container" style="width: 100%; height: auto; clear: both; text-align: center;" bis_skin_checked="1"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-1186087640573189" data-adsbygoogle-status="done" style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-status="filled"><div id="aswift_7_host" style="border: none; height: 280px; width: 596px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: visible;" bis_skin_checked="1" tabindex="0" title="Advertisement" aria-label="Advertisement"></div></ins></div>
+<p>Nesse tutorial, vamos criar uma chave que será usada pelo cliente Acess.</p><div class="google-auto-placed ap_container" style="width: 100%; height: auto; clear: both; text-align: center;" bis_skin_checked="1"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-1186087640573189" data-adsbygoogle-status="done" style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-status="filled"><div id="aswift_7_host" style="border: none; height: 280px; width: 596px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: visible;" bis_skin_checked="1" tabindex="0" title="Advertisement" aria-label="Advertisement"></div></ins></div>
 
 
 
@@ -938,11 +938,11 @@ COMMIT</code></pre>
 
 
 
-<pre class="wp-block-code"><code>openvpn --tls-crypt-v2 private/vpn_server.pem --genkey tls-crypt-v2-client private/Alice.pem</code></pre>
+<pre class="wp-block-code"><code>openvpn --tls-crypt-v2 private/vpn_server.pem --genkey tls-crypt-v2-client private/Acess.pem</code></pre>
 
 
 
-<p>Podemos verificar que a chave para Alice foi criada dentro do diretório ~/easy-rsa/pki/private/.</p>
+<p>Podemos verificar que a chave para Acess foi criada dentro do diretório ~/easy-rsa/pki/private/.</p>
 
 
 
@@ -966,7 +966,7 @@ COMMIT</code></pre>
 
 
 
-<p>Dentro desse diretório vamos criar subdiretórios para cada cliente. Em nosso caso, temos o cliente Alice. Então vamos criar um subdiretório alice.</p>
+<p>Dentro desse diretório vamos criar subdiretórios para cada cliente. Em nosso caso, temos o cliente Acess. Então vamos criar um subdiretório Acess.</p>
 
 
 
@@ -974,11 +974,11 @@ COMMIT</code></pre>
 
 
 
-<pre class="wp-block-code"><code>mkdir alice</code></pre>
+<pre class="wp-block-code"><code>mkdir Acess</code></pre>
 
 
 
-<p>Agora vamos copiar os arquivos ca.crt e os outros arquivos da Alice para o diretório “~/vpn_clients/alice”. O primeiro arquivo é o ca.crt que está no “~/easy-rsa/pki/” . Então vamos usar o comando abaixo</p>
+<p>Agora vamos copiar os arquivos ca.crt e os outros arquivos da Acess para o diretório “~/vpn_clients/Acess”. O primeiro arquivo é o ca.crt que está no “~/easy-rsa/pki/” . Então vamos usar o comando abaixo</p>
 
 
 
@@ -986,7 +986,7 @@ COMMIT</code></pre>
 
 
 
-<pre class="wp-block-code"><code>cp ca.crt ~/vpn_clients/alice</code></pre>
+<pre class="wp-block-code"><code>cp ca.crt ~/vpn_clients/Acess</code></pre>
 
 
 
@@ -998,15 +998,15 @@ COMMIT</code></pre>
 
 
 
-<p>Em seguida vamos copiar o arquivo de certificado de Alice “.crt” para o diretório que criamos para o cliente Alice.</p>
+<p>Em seguida vamos copiar o arquivo de certificado de Acess “.crt” para o diretório que criamos para o cliente Acess.</p>
 
 
 
-<pre class="wp-block-code"><code>cp Alice.crt ~/vpn_clients/alice</code></pre>
+<pre class="wp-block-code"><code>cp Acess.crt ~/vpn_clients/Acess</code></pre>
 
 
 
-<p>Agora vamos copiar a chave de Alice “.key” e “.pem”. Para isso, vamos para o diretório “~/easy-rsa/pki/private/”.</p>
+<p>Agora vamos copiar a chave de Acess “.key” e “.pem”. Para isso, vamos para o diretório “~/easy-rsa/pki/private/”.</p>
 
 
 
@@ -1014,27 +1014,27 @@ COMMIT</code></pre>
 
 
 
-<p>Depois vamos copiar a chave de Alice “Alice.key” e “Alice.pem” para o diretório da Alice.</p>
+<p>Depois vamos copiar a chave de Acess “Acess.key” e “Acess.pem” para o diretório da Acess.</p>
 
 
 
-<pre class="wp-block-code"><code>cp Alice.key ~/vpn_clients/alice</code></pre>
+<pre class="wp-block-code"><code>cp Acess.key ~/vpn_clients/Acess</code></pre>
 
 
 
-<pre class="wp-block-code"><code>cp Alice.pem ~/vpn_clients/alice</code></pre>
+<pre class="wp-block-code"><code>cp Acess.pem ~/vpn_clients/Acess</code></pre>
 
 
 
-<p>Agora vamos para o diretório da Alice:</p>
+<p>Agora vamos para o diretório da Acess:</p>
 
 
 
-<p>cd ~/vpn_clients/alice</p>
+<p>cd ~/vpn_clients/Acess</p>
 
 
 
-<pre class="wp-block-code"><code>cd ~/vpn_clients/alice</code></pre>
+<pre class="wp-block-code"><code>cd ~/vpn_clients/Acess</code></pre>
 
 
 
@@ -1054,11 +1054,11 @@ COMMIT</code></pre>
 
 
 
-<p>Agora vamos criar o arquivo “make_client_ovpn.sh” dentro do diretório da Alice. Esse arquivo é um script que vai facilitar nossa vida no momento de configurar os clientes. Obviamente, você poderia digitar manualmente as configurações no arquivo “.ovpn” dos clientes. No entanto, aqui sugerimos o script para automatizar a tarefa.</p>
+<p>Agora vamos criar o arquivo “make_client_ovpn.sh” dentro do diretório da Acess. Esse arquivo é um script que vai facilitar nossa vida no momento de configurar os clientes. Obviamente, você poderia digitar manualmente as configurações no arquivo “.ovpn” dos clientes. No entanto, aqui sugerimos o script para automatizar a tarefa.</p>
 
 
 
-<pre class="wp-block-code"><code>cd ~/vpn_clients/alice</code></pre>
+<pre class="wp-block-code"><code>cd ~/vpn_clients/Acess</code></pre>
 
 
 
@@ -1169,15 +1169,15 @@ cat &lt;(echo -e 'client') \
 
 
 
-<p>Depois disso vamos executar o arquivo utilizando o “./” e seguido do nome de identificação do cliente. No nosso caso, o cliente é a Alice.</p>
+<p>Depois disso vamos executar o arquivo utilizando o “./” e seguido do nome de identificação do cliente. No nosso caso, o cliente é a Acess.</p>
 
 
 
-<pre class="wp-block-code"><code>./make_client_ovpn.sh Alice</code></pre>
+<pre class="wp-block-code"><code>./make_client_ovpn.sh Acess</code></pre>
 
 
 
-<p>Você vai perceber que foi criado um arquivo “.ovpn” dentro da pasta da Alice. Pode verificar usando o comando “ls”.</p>
+<p>Você vai perceber que foi criado um arquivo “.ovpn” dentro da pasta da Acess. Pode verificar usando o comando “ls”.</p>
 
 
 
@@ -1193,35 +1193,35 @@ cat &lt;(echo -e 'client') \
 
 
 
-<p>Agora vamos copiar o arquivo Alice.ovpn para o computador do cliente. Para isso, podemos usar diversas formas para copiar como por exemplo SFTP, email, pendrive.</p>
+<p>Agora vamos copiar o arquivo Acess.ovpn para o computador do cliente. Para isso, podemos usar diversas formas para copiar como por exemplo SFTP, email, pendrive.</p>
 
 
 
-<p><strong>(Opcional)</strong>Vamos usar o netcat para trasnferir o arquivo Alice.ovpn.</p><div class="google-auto-placed ap_container" style="width: 100%; height: auto; clear: both; text-align: center;" bis_skin_checked="1"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-1186087640573189" data-adsbygoogle-status="done" style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-status="filled"><div id="aswift_8_host" style="border: none; height: 280px; width: 596px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: visible;" bis_skin_checked="1" tabindex="0" title="Advertisement" aria-label="Advertisement"></div></ins></div>
+<p><strong>(Opcional)</strong>Vamos usar o netcat para trasnferir o arquivo Acess.ovpn.</p><div class="google-auto-placed ap_container" style="width: 100%; height: auto; clear: both; text-align: center;" bis_skin_checked="1"><ins data-ad-format="auto" class="adsbygoogle adsbygoogle-noablate" data-ad-client="ca-pub-1186087640573189" data-adsbygoogle-status="done" style="display: block; margin: auto; background-color: transparent; height: 280px;" data-ad-status="filled"><div id="aswift_8_host" style="border: none; height: 280px; width: 596px; margin: 0px; padding: 0px; position: relative; visibility: visible; background-color: transparent; display: inline-block; overflow: visible;" bis_skin_checked="1" tabindex="0" title="Advertisement" aria-label="Advertisement"></div></ins></div>
 
 
 
-<p>Para isso vamos iniciar um servidor netcat na máquina que vai receber o arquivo Alice.ovpn. Para isso vamos usar o comando abaixo:</p>
+<p>Para isso vamos iniciar um servidor netcat na máquina que vai receber o arquivo Acess.ovpn. Para isso vamos usar o comando abaixo:</p>
 
 
 
-<pre class="wp-block-code"><code>nc -vnl -w 2 8888 &gt; Alice.ovpn</code></pre>
+<pre class="wp-block-code"><code>nc -vnl -w 2 8888 &gt; Acess.ovpn</code></pre>
 
 
 
-<p>Esse comando informa que o computador vai ouvir na porta 8888 e vai jogar o conteúdo recebido dentro do arquivo Alice.ovpn.</p>
+<p>Esse comando informa que o computador vai ouvir na porta 8888 e vai jogar o conteúdo recebido dentro do arquivo Acess.ovpn.</p>
 
 
 
-<p>Agora vamos para a máquina servidor VPN e vamos para a pasta da Alice. Em seguida vamos digitar o seguinte comando:</p>
+<p>Agora vamos para a máquina servidor VPN e vamos para a pasta da Acess. Em seguida vamos digitar o seguinte comando:</p>
 
 
 
-<pre class="wp-block-code"><code>nc -vn 10.0.2.15 8888 &lt; Alice.ovpn</code></pre>
+<pre class="wp-block-code"><code>nc -vn 10.0.2.15 8888 &lt; Acess.ovpn</code></pre>
 
 
 
-<p>Nesse caso estamos enviando o conteúdo do arquivo Alice.ovpn para a máquina 10.0.2.15 utilizando a porta TCP 8888.</p>
+<p>Nesse caso estamos enviando o conteúdo do arquivo Acess.ovpn para a máquina 10.0.2.15 utilizando a porta TCP 8888.</p>
 
 
 
@@ -1269,11 +1269,11 @@ cat &lt;(echo -e 'client') \
 
 
 
-<p>Agora vamos conectar o cliente na VPN. Em nosso caso, o cliente é a Alice. Portanto, vamos usar o comando abaixo:</p>
+<p>Agora vamos conectar o cliente na VPN. Em nosso caso, o cliente é a Acess. Portanto, vamos usar o comando abaixo:</p>
 
 
 
-<pre class="wp-block-code"><code>sudo openvpn --config Alice.ovpn</code></pre>
+<pre class="wp-block-code"><code>sudo openvpn --config Acess.ovpn</code></pre>
 
 
 
