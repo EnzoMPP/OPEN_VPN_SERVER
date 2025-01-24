@@ -486,7 +486,7 @@ proto udp
 
 # "dev tun" will create a routed IP tunnel 
 dev tun 
-
+crl-verify crl.pem
 ca ca.crt 
 cert vpn_server.crt 
 key vpn_server.key   
